@@ -7,7 +7,7 @@
     },
      "autoload-dev": {
         "psr-4": {
-            "Ibrahim13\\PdPhp\\": "src/"
+            "Ibrahim13\\PdPhp\\Test\\": "tests/"
         }
     },
     "authors": [

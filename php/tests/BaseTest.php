@@ -1,13 +1,13 @@
 <?php
 
-namespace Ibrahim13\PdPhp;
+namespace Ibrahim13\PdPhp\Test;
 
 use PHPUnit\Framework\TestCase;
 
 class BaseTest extends TestCase
 {
 
-	#[TEST]
+	# [TEST]
 	public function testIngration(){
 		$this->assertTrue(true);
 	}
