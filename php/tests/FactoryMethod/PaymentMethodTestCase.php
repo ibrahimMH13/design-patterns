@@ -3,7 +3,13 @@
 namespace Ibrahim13\PdPhp\Test\FactoryMethod;
 
 use Ibrahim13\PdPhp\Test\BaseTest;
-use Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\Factories\CardFactory;
+use Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\Factories\{
+	CardFactory,
+	PaymentFactory,
+	PayPalFactory
+	};
+use Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\PaymentMethod\IPaymentMethod;
+
 /**
  * 
  */
@@ -12,15 +18,26 @@ class PaymentMethodTestCase extends BaseTest
 	
 
 
-	public function testPaymentMethod1(){
+	public function testCardPaymentMethod1(){
 
 		$paymentMethod = new CardFactory();
 
-		$getway = $paymentMethod->proccessPayment(100);
+		$this->assertInstanceOf(PaymentFactory::class, $paymentMethod);
 
-		echo "\n----------->".$getway;
+		$getway = $paymentMethod->proccessPayment(100);
 
 		$this->assertIsString($getway);
 
+	}
+
+	public function testPaypalPaymentMethod1(){
+
+		$paymentMethod = new PayPalFactory();
+
+		$this->assertInstanceOf(PaymentFactory::class, $paymentMethod);
+
+		$response = $paymentMethod->proccessPayment(100);
+
+		$this->assertIsString($response);
 	}
 }

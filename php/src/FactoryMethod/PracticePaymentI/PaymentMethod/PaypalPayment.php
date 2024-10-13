@@ -1,15 +1,15 @@
 <?php
 
 
-namespace Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI;
-use Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\IPaymentMethod;
+namespace Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\PaymentMethod;
+use Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\PaymentMethod\IPaymentMethod;
 
 
 
-class Paypal implements IPaymentMethod{
+class PaypalPayment implements IPaymentMethod{
 
 
-	public function pay(int $amount):string{
+	public function pay(int $amount): string{
 
 		return "Paypal proccess transaction";
 	}

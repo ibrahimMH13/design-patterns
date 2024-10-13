@@ -12,6 +12,6 @@ abstract class PaymentFactory {
 
 		$paymentMethod = $this->createPaymentMethod();
 
-		 return $paymentMethod->pay($amount); 
+		return $paymentMethod->pay($amount); 
 	}
 }

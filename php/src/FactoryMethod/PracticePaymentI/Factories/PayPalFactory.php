@@ -2,17 +2,17 @@
 
 namespace Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\Factories;
 
-use Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\Factories{
-	PayPalPayment,
-	PaymentMethod,
-	PaymentFactory
-};
+use Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\Factories\PaymentFactory;
 
-class PayPalFactory extends PaymentFactory{
+use Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\PaymentMethod\IPaymentMethod;
+
+use Ibrahim13\PdPhp\FactoryMethod\PracticePaymentI\PaymentMethod\PaypalPayment;
+
+class PayPalFactory extends PaymentFactory {
 
 
-	public function createPaymentMethod():PaymentMethod{
+	public function createPaymentMethod():IPaymentMethod{
 
-			return PayPalPayment();
+			return new PaypalPayment();
 	}
 }
