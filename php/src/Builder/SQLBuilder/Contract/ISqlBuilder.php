@@ -5,13 +5,13 @@ use Ibrahim13\PdPhp\Builder\SqlBuilder\SqlQuery;
 
 interface ISqlBuilder {
 
-	public function from(string $table);
+	public function from(string $table):self;
 
-	public function orderBy(string $column, string $dir = 'DESC');
+	public function orderBy(string $column, string $dir = 'DESC'):self;
 
-	public function limit(int $offset);
+	public function limit(int $offset):self;
 
-	public function select(array $columns);
+	public function select(array $columns):self;
 
 	public function getQuery():SqlQuery;
 
