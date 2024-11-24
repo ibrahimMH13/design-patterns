@@ -1,7 +1,7 @@
 <?php
 
-namespace Ibrahim13\PdPhp\Builder\SqlBuilder\Contract;
-use Ibrahim13\PdPhp\Builder\SqlBuilder\SqlQuery;
+namespace Ibrahim13\PdPhp\Builder\SQLBuilder\Contract;
+use Ibrahim13\PdPhp\Builder\SQLBuilder\SqlQuery;
 
 interface ISqlBuilder {
 
@@ -13,6 +13,6 @@ interface ISqlBuilder {
 
 	public function select(array $columns):self;
 
-	public function getQuery():SqlQuery;
+	public function getQuery():string;
 
 }

@@ -1,20 +1,22 @@
 <?php
 
-namespace Ibrahim13\PdPhp\Builder\SqlBuilder;
+namespace Ibrahim13\PdPhp\Builder\SQLBuilder;
 
-use Ibrahim13\PdPhp\Builder\SqlBuilder\Contract\ISqlBuilder;
-use Ibrahim13\PdPhp\Builder\SqlBuilder\SqlQuery;
+use Ibrahim13\PdPhp\Builder\SQLBuilder\Contract\ISqlBuilder;
+use Ibrahim13\PdPhp\Builder\SQLBuilder\SqlQuery;
+
+
 class SqlBuilder implements ISqlBuilder{
 
 	private $sqlQuery;
 
-	public function __constractor(){
+	public function __construct(){
 
 		$this->sqlQuery = new SqlQuery();
 
 	}
 
-	public function from(string $table){
+	public function from(string $table):self{
 
 		$this->sqlQuery->table = $table;
 
@@ -22,7 +24,7 @@ class SqlBuilder implements ISqlBuilder{
 
 	}
 
-	public function orderBy(string $column, string $dir = 'DESC'){
+	public function orderBy(string $column, string $dir = 'DESC'):self{
 
 		$this->sqlQuery->orderBy = $column . $dir;
 
@@ -30,7 +32,7 @@ class SqlBuilder implements ISqlBuilder{
 
 	}
 
-	public function limit(int $offset){
+	public function limit(int $offset):self{
 
 		$this->sqlQuery->limit = $offset;
 
@@ -38,15 +40,14 @@ class SqlBuilder implements ISqlBuilder{
 
 	}
 
-	public function select(array $columns){
+	public function select(array $columns):self{
 
 		$this->sqlQuery->fields = $columns;
+		return $this;
 	}
 
-	public function getQuery():SqlQuery{
-
+	public function getQuery():string{
 		return $this->sqlQuery;
-
 	}
 
 }

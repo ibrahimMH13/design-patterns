@@ -3,9 +3,7 @@
 namespace Ibrahim13\PdPhp\Builder\SqlBuilder;
 
 
-/**
- * 
- */
+
 class SqlQuery 
 {
 	
@@ -21,33 +19,30 @@ class SqlQuery
 
 
 
-	public function __string(){
+public function __toString() {
+    // Handle fields
+    $fields = empty($this->fields) ? '*' : implode(', ', (array) $this->fields);
 
-		$query = "SELECT {empty($this->fields)?'*': implode('*', $this->fields)}";
-		
-		$query .= "FROM {$this->table}";
+    // Start query
+    $query = "SELECT {$fields} FROM {$this->table}";
 
-		if ($this->conditions) {
+    // Handle WHERE clause
+    if (!empty($this->conditions)) {
+        $query .= " WHERE " . implode(' AND ', $this->conditions);
+    }
 
-		$query .= "WHERE implode('*',$this->conditions)";
-		
-		}
+    // Handle ORDER BY clause
+    if (!empty($this->orderBy)) {
+        $query .= " ORDER BY {$this->orderBy}";
+    }
 
-		if ($this->orderBy) {
-			
-			$query .= "ORDER BY {$this->orderBy}";
+    // Handle LIMIT clause
+    if (!empty($this->limit)) {
+        $query .= " LIMIT {$this->limit}";
+    }
 
-		}
-
-		if ($this->limit) {
-			
-			$query .= "LIMIT {$this->limit}";
-			
-		}
-
-
-	}
-
+    return $query;
+}
 
 	
 }
