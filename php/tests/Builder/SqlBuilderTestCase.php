@@ -5,8 +5,13 @@ namespace Ibrahim13\PdPhp\Test\Builder;
 
 
 use Ibrahim13\PdPhp\Test\BaseTest;
-use Ibrahim13\PdPhp\Builder\SQLBuilder\SqlBuilder;
-use Ibrahim13\PdPhp\Builder\SQLBuilder\SqlQuery;
+use Ibrahim13\PdPhp\Builder\SQLBuilder\{
+	SqlQuery,
+	SqlBuilder,
+	SqlQueryDecorator,
+	SqlQueryLogDecorator,
+	SqlQueryCacheDecorator
+};
 
 class SqlBuilderTestCase extends  BaseTest{
 
@@ -22,7 +27,7 @@ class SqlBuilderTestCase extends  BaseTest{
 						->orderBy('status')
 						->getQuery();
 
-		$this->assertIsString($query);
+		$this->assertIsString((string)$query);
 	}
 
 	public function testSqlQuery(){
@@ -36,6 +41,25 @@ class SqlBuilderTestCase extends  BaseTest{
 		$sql->conditions= ['id > 3'];
 		$this->assertIsString((string)$sql);	
 
+
+	}
+
+
+	public function testSqlDecorator(){
+		
+		$Builder = new SqlBuilder();
+		
+		$query = $Builder->from('tester')
+						->select(['id','label', 'status'])
+						->limit(4)
+						->orderBy('status')
+						->getQuery();
+
+		$queryLog = new SqlQueryLogDecorator($query);
+		$queryChached = new SqlQueryCacheDecorator($queryLog);
+		$queryChached = new SqlQueryCacheDecorator($queryLog);
+		$queryChached = new SqlQueryCacheDecorator($queryLog);
+		$this->assertIsString((string)$queryChached);	
 
 	}
 

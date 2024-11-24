@@ -13,6 +13,6 @@ interface ISqlBuilder {
 
 	public function select(array $columns):self;
 
-	public function getQuery():string;
+	public function getQuery():SqlQuery;
 
 }

@@ -46,7 +46,8 @@ class SqlBuilder implements ISqlBuilder{
 		return $this;
 	}
 
-	public function getQuery():string{
+	public function getQuery(): SqlQuery{
+
 		return $this->sqlQuery;
 	}
 

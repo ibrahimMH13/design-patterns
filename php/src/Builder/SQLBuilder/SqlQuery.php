@@ -1,6 +1,6 @@
 <?php
 
-namespace Ibrahim13\PdPhp\Builder\SqlBuilder;
+namespace Ibrahim13\PdPhp\Builder\SQLBuilder;
 
 
 
