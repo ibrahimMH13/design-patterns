@@ -1,6 +1,6 @@
 from builder.sql_query import SqlQuery
 from builder.sql_builder import SqlBuilder
-
+from builder.sql_query_log_decorator import SqlQueryLogDecorator
 
 def test_sql_query():
 
@@ -25,3 +25,19 @@ def test_sql_builder():
                     .order_by('id','DESC'))
   
    assert str(sql.get_query()) == "SELECT id, first_name, last_name, email, salary FROM users WHERE salary > 5000 LIMIT 5 ORDER BY id DESC"
+
+
+
+
+def test_decorator_sql_builder():
+   
+   sql_builder = SqlBuilder()
+   sql = (sql_builder.select(['id','first_name','last_name','email','salary'])
+                    .from_table('users')
+                    .limit(5)
+                    .where(['salary > 5000'])
+                    .order_by('id','DESC'))
+   
+   sql = SqlQueryLogDecorator(sql.get_query())
+   
+   assert  str(sql) == "SELECT id, first_name, last_name, email, salary FROM users WHERE salary > 5000 LIMIT 5 ORDER BY id DESC"
